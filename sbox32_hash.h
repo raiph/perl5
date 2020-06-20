@@ -1,7 +1,7 @@
 #ifndef DEBUG_SBOX32_HASH
 #define DEBUG_SBOX32_HASH 0
 
-#include "zaphod32_hash.h"
+#include "chaskey_hash.h"
 
 #if DEBUG_SBOX32_HASH == 1
 #include <stdio.h>
@@ -1498,7 +1498,7 @@ SBOX32_STATIC_INLINE U32 sbox32_hash_with_state(
     U32 *state= (U32 *)state_ch;
     U32 hash = *state;
     switch (key_len) {
-        default: return zaphod32_hash_with_state(state_ch, key, key_len);
+        default: return chaskey_hash_with_state(state_ch, key, key_len);
         case_256_SBOX32(hash,state,key)
         case_255_SBOX32(hash,state,key)
         case_254_SBOX32(hash,state,key)

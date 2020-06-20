@@ -13,15 +13,14 @@
 
 #if !( 0 \
         || defined(PERL_HASH_FUNC_SIPHASH) \
+        || defined(PERL_HASH_FUNC_SIPHASH24) \
         || defined(PERL_HASH_FUNC_SIPHASH13) \
-        || defined(PERL_HASH_FUNC_STADTX) \
-        || defined(PERL_HASH_FUNC_ZAPHOD32) \
         || defined(PERL_HASH_FUNC_CHASKEY) \
     )
 #   if defined(CAN64BITHASH)
-#       define PERL_HASH_FUNC_STADTX
+#       define PERL_HASH_FUNC_SIPHASH13
 #   else
-#       define PERL_HASH_FUNC_ZAPHOD32
+#       define PERL_HASH_FUNC_CHASKEY
 #   endif
 #endif
 
@@ -36,7 +35,7 @@
 /* this must be after the SBOX32_MAX_LEN define */
 #include "sbox32_hash.h"
 
-#if defined(PERL_HASH_FUNC_SIPHASH)
+#if defined(PERL_HASH_FUNC_SIPHASH) || defined(PERL_HASH_FUNC_SIPHASH24)
 # define __PERL_HASH_FUNC "SIPHASH_2_4"
 # define __PERL_HASH_SEED_BYTES 16
 # define __PERL_HASH_STATE_BYTES 32
@@ -55,20 +54,6 @@
 # define __PERL_HASH_SEED_STATE(seed,state) chaskey_seed_state(seed,state)
 # define __PERL_HASH_WITH_STATE(state,str,len) (U32)chaskey_hash_with_state((state),(U8*)(str),(len))
 # include "chaskey_hash.h"
-#elif defined(PERL_HASH_FUNC_STADTX)
-# define __PERL_HASH_FUNC "STADTX"
-# define __PERL_HASH_SEED_BYTES 16
-# define __PERL_HASH_STATE_BYTES 32
-# define __PERL_HASH_SEED_STATE(seed,state) stadtx_seed_state(seed,state)
-# define __PERL_HASH_WITH_STATE(state,str,len) (U32)stadtx_hash_with_state((state),(U8*)(str),(len))
-# include "stadtx_hash.h"
-#elif defined(PERL_HASH_FUNC_ZAPHOD32)
-# define __PERL_HASH_FUNC "ZAPHOD32"
-# define __PERL_HASH_SEED_BYTES 12
-# define __PERL_HASH_STATE_BYTES 12
-# define __PERL_HASH_SEED_STATE(seed,state) zaphod32_seed_state(seed,state)
-# define __PERL_HASH_WITH_STATE(state,str,len) (U32)zaphod32_hash_with_state((state),(U8*)(str),(len))
-# include "zaphod32_hash.h"
 #endif
 
 #ifndef __PERL_HASH_WITH_STATE

@@ -5463,7 +5463,6 @@ sbox32_hash.h			SBox hash code (32 Bit SBOX based hash function)
 scope.c				Scope entry and exit code
 scope.h				Scope entry and exit header
 SECURITY.md			Add Security Policy for GitHub
-stadtx_hash.h			StadtX hash code (64 Bit fast hash function)
 sv.c				Scalar value code
 sv.h				Scalar value header
 symbian/bld.inf			Symbian sample app build config
@@ -6302,4 +6301,3 @@ win32/win32thread.c		Win32 functions for threads
 win32/win32thread.h		Win32 port mapping to threads
 write_buildcustomize.pl		Generate lib/buildcustomize.pl
 XSUB.h				Include file for extension subroutines
-zaphod32_hash.h			Zaphod32 hash code (32 bit fast hash function)
