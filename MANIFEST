@@ -17,6 +17,7 @@ caretx.c		C file to create $^X
 cflags.SH		A script that emits C compilation flags per file
 Changes			Describe how to peruse changes between releases
 charclass_invlists.h	Compiled-in inversion lists
+chaskey_hash.h	        Chaskey hash for 32 bits builds
 config_h.SH		Produces config.h
 configpm		Produces lib/Config.pm
 Configure		Portability tool
